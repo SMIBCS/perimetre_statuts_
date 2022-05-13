@@ -8,8 +8,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/filter.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
         #map {
@@ -24,7 +22,6 @@
         </div>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script>
-        <script src="js/multi-style-layer.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -33,16 +30,12 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/tailDT.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/wNumb.js"></script>
         <script src="data/COLLECTIVITE_TERRITORIALE_1.js"></script>
         <script src="data/CommuneduSMIBCS_2.js"></script>
         <script src="data/EPCI_3.js"></script>
-        <script src="data/Maretangsretenues_4.js"></script>
-        <script src="data/CoursdeauSMIBCS_5.js"></script>
-        <script src="data/CanaldeBerry_6.js"></script>
-        <script src="data/TerritoireduSMIBCSstatuts_7.js"></script>
+        <script src="data/CoursdeauSMIBCS_4.js"></script>
+        <script src="data/CanaldeBerry_5.js"></script>
+        <script src="data/TerritoireduSMIBCSstatuts_6.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
@@ -121,7 +114,7 @@
                 lineJoin: 'bevel',
                 weight: 4.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_COLLECTIVITE_TERRITORIALE_1');
@@ -129,7 +122,7 @@
         map.getPane('pane_COLLECTIVITE_TERRITORIALE_1').style['mix-blend-mode'] = 'normal';
         var layer_COLLECTIVITE_TERRITORIALE_1 = new L.geoJson(json_COLLECTIVITE_TERRITORIALE_1, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_COLLECTIVITE_TERRITORIALE_1',
             layerName: 'layer_COLLECTIVITE_TERRITORIALE_1',
             pane: 'pane_COLLECTIVITE_TERRITORIALE_1',
@@ -232,7 +225,7 @@
                 lineJoin: 'bevel',
                 weight: 2.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_CommuneduSMIBCS_2');
@@ -240,7 +233,7 @@
         map.getPane('pane_CommuneduSMIBCS_2').style['mix-blend-mode'] = 'normal';
         var layer_CommuneduSMIBCS_2 = new L.geoJson(json_CommuneduSMIBCS_2, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_CommuneduSMIBCS_2',
             layerName: 'layer_CommuneduSMIBCS_2',
             pane: 'pane_CommuneduSMIBCS_2',
@@ -292,7 +285,7 @@
                 lineJoin: 'bevel',
                 weight: 2.0,
                 fillOpacity: 0,
-                interactive: true,
+                interactive: false,
             }
         }
         map.createPane('pane_EPCI_3');
@@ -300,7 +293,7 @@
         map.getPane('pane_EPCI_3').style['mix-blend-mode'] = 'normal';
         var layer_EPCI_3 = new L.geoJson(json_EPCI_3, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_EPCI_3',
             layerName: 'layer_EPCI_3',
             pane: 'pane_EPCI_3',
@@ -309,124 +302,7 @@
         });
         bounds_group.addLayer(layer_EPCI_3);
         map.addLayer(layer_EPCI_3);
-        function pop_Maretangsretenues_4(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['CODE_HYDRO'] !== null ? autolinker.link(feature.properties['CODE_HYDRO'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['NATURE'] !== null ? autolinker.link(feature.properties['NATURE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['TOPONYME'] !== null ? autolinker.link(feature.properties['TOPONYME'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['STATUT_TOP'] !== null ? autolinker.link(feature.properties['STATUT_TOP'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['IMPORTANCE'] !== null ? autolinker.link(feature.properties['IMPORTANCE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DATE_CREAT'] !== null ? autolinker.link(feature.properties['DATE_CREAT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DATE_MAJ'] !== null ? autolinker.link(feature.properties['DATE_MAJ'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DATE_APP'] !== null ? autolinker.link(feature.properties['DATE_APP'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DATE_CONF'] !== null ? autolinker.link(feature.properties['DATE_CONF'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['SOURCE'] !== null ? autolinker.link(feature.properties['SOURCE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['ID_SOURCE'] !== null ? autolinker.link(feature.properties['ID_SOURCE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['STATUT'] !== null ? autolinker.link(feature.properties['STATUT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['MAREE'] !== null ? autolinker.link(feature.properties['MAREE'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['PERMANENT'] !== null ? autolinker.link(feature.properties['PERMANENT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Z_MOY'] !== null ? autolinker.link(feature.properties['Z_MOY'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['REF_Z_MOY'] !== null ? autolinker.link(feature.properties['REF_Z_MOY'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['MODE_Z_MOY'] !== null ? autolinker.link(feature.properties['MODE_Z_MOY'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['PREC_Z_MOY'] !== null ? autolinker.link(feature.properties['PREC_Z_MOY'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['HAUT_MAX'] !== null ? autolinker.link(feature.properties['HAUT_MAX'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['OBT_HT_MAX'] !== null ? autolinker.link(feature.properties['OBT_HT_MAX'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['COMMENT'] !== null ? autolinker.link(feature.properties['COMMENT'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_Maretangsretenues_4_0() {
-            return {
-                pane: 'pane_Maretangsretenues_4',
-                opacity: 1,
-                color: 'rgba(53,121,177,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 4.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        function style_Maretangsretenues_4_1() {
-            return {
-                pane: 'pane_Maretangsretenues_4',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(72,123,182,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Maretangsretenues_4');
-        map.getPane('pane_Maretangsretenues_4').style.zIndex = 404;
-        map.getPane('pane_Maretangsretenues_4').style['mix-blend-mode'] = 'normal';
-        var layer_Maretangsretenues_4 = new L.geoJson.multiStyle(json_Maretangsretenues_4, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Maretangsretenues_4',
-            layerName: 'layer_Maretangsretenues_4',
-            pane: 'pane_Maretangsretenues_4',
-            onEachFeature: pop_Maretangsretenues_4,
-            styles: [style_Maretangsretenues_4_0,style_Maretangsretenues_4_1,]
-        });
-        bounds_group.addLayer(layer_Maretangsretenues_4);
-        map.addLayer(layer_Maretangsretenues_4);
-        function pop_CoursdeauSMIBCS_5(feature, layer) {
+        function pop_CoursdeauSMIBCS_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
@@ -480,9 +356,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_CoursdeauSMIBCS_5_0() {
+        function style_CoursdeauSMIBCS_4_0() {
             return {
-                pane: 'pane_CoursdeauSMIBCS_5',
+                pane: 'pane_CoursdeauSMIBCS_4',
                 opacity: 1,
                 color: 'rgba(72,123,182,1.0)',
                 dashArray: '',
@@ -493,21 +369,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_CoursdeauSMIBCS_5');
-        map.getPane('pane_CoursdeauSMIBCS_5').style.zIndex = 405;
-        map.getPane('pane_CoursdeauSMIBCS_5').style['mix-blend-mode'] = 'normal';
-        var layer_CoursdeauSMIBCS_5 = new L.geoJson(json_CoursdeauSMIBCS_5, {
+        map.createPane('pane_CoursdeauSMIBCS_4');
+        map.getPane('pane_CoursdeauSMIBCS_4').style.zIndex = 404;
+        map.getPane('pane_CoursdeauSMIBCS_4').style['mix-blend-mode'] = 'normal';
+        var layer_CoursdeauSMIBCS_4 = new L.geoJson(json_CoursdeauSMIBCS_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_CoursdeauSMIBCS_5',
-            layerName: 'layer_CoursdeauSMIBCS_5',
-            pane: 'pane_CoursdeauSMIBCS_5',
-            onEachFeature: pop_CoursdeauSMIBCS_5,
-            style: style_CoursdeauSMIBCS_5_0,
+            dataVar: 'json_CoursdeauSMIBCS_4',
+            layerName: 'layer_CoursdeauSMIBCS_4',
+            pane: 'pane_CoursdeauSMIBCS_4',
+            onEachFeature: pop_CoursdeauSMIBCS_4,
+            style: style_CoursdeauSMIBCS_4_0,
         });
-        bounds_group.addLayer(layer_CoursdeauSMIBCS_5);
-        map.addLayer(layer_CoursdeauSMIBCS_5);
-        function pop_CanaldeBerry_6(feature, layer) {
+        bounds_group.addLayer(layer_CoursdeauSMIBCS_4);
+        map.addLayer(layer_CoursdeauSMIBCS_4);
+        function pop_CanaldeBerry_5(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
@@ -561,9 +437,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_CanaldeBerry_6_0() {
+        function style_CanaldeBerry_5_0() {
             return {
-                pane: 'pane_CanaldeBerry_6',
+                pane: 'pane_CanaldeBerry_5',
                 opacity: 1,
                 color: 'rgba(185,0,3,1.0)',
                 dashArray: '',
@@ -574,21 +450,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_CanaldeBerry_6');
-        map.getPane('pane_CanaldeBerry_6').style.zIndex = 406;
-        map.getPane('pane_CanaldeBerry_6').style['mix-blend-mode'] = 'normal';
-        var layer_CanaldeBerry_6 = new L.geoJson(json_CanaldeBerry_6, {
+        map.createPane('pane_CanaldeBerry_5');
+        map.getPane('pane_CanaldeBerry_5').style.zIndex = 405;
+        map.getPane('pane_CanaldeBerry_5').style['mix-blend-mode'] = 'normal';
+        var layer_CanaldeBerry_5 = new L.geoJson(json_CanaldeBerry_5, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_CanaldeBerry_6',
-            layerName: 'layer_CanaldeBerry_6',
-            pane: 'pane_CanaldeBerry_6',
-            onEachFeature: pop_CanaldeBerry_6,
-            style: style_CanaldeBerry_6_0,
+            dataVar: 'json_CanaldeBerry_5',
+            layerName: 'layer_CanaldeBerry_5',
+            pane: 'pane_CanaldeBerry_5',
+            onEachFeature: pop_CanaldeBerry_5,
+            style: style_CanaldeBerry_5_0,
         });
-        bounds_group.addLayer(layer_CanaldeBerry_6);
-        map.addLayer(layer_CanaldeBerry_6);
-        function pop_TerritoireduSMIBCSstatuts_7(feature, layer) {
+        bounds_group.addLayer(layer_CanaldeBerry_5);
+        map.addLayer(layer_CanaldeBerry_5);
+        function pop_TerritoireduSMIBCSstatuts_6(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
@@ -609,9 +485,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_TerritoireduSMIBCSstatuts_7_0() {
+        function style_TerritoireduSMIBCSstatuts_6_0() {
             return {
-                pane: 'pane_TerritoireduSMIBCSstatuts_7',
+                pane: 'pane_TerritoireduSMIBCSstatuts_6',
                 opacity: 1,
                 color: 'rgba(77,175,74,1.0)',
                 dashArray: '',
@@ -622,20 +498,20 @@
                 interactive: false,
             }
         }
-        map.createPane('pane_TerritoireduSMIBCSstatuts_7');
-        map.getPane('pane_TerritoireduSMIBCSstatuts_7').style.zIndex = 407;
-        map.getPane('pane_TerritoireduSMIBCSstatuts_7').style['mix-blend-mode'] = 'normal';
-        var layer_TerritoireduSMIBCSstatuts_7 = new L.geoJson(json_TerritoireduSMIBCSstatuts_7, {
+        map.createPane('pane_TerritoireduSMIBCSstatuts_6');
+        map.getPane('pane_TerritoireduSMIBCSstatuts_6').style.zIndex = 406;
+        map.getPane('pane_TerritoireduSMIBCSstatuts_6').style['mix-blend-mode'] = 'normal';
+        var layer_TerritoireduSMIBCSstatuts_6 = new L.geoJson(json_TerritoireduSMIBCSstatuts_6, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_TerritoireduSMIBCSstatuts_7',
-            layerName: 'layer_TerritoireduSMIBCSstatuts_7',
-            pane: 'pane_TerritoireduSMIBCSstatuts_7',
-            onEachFeature: pop_TerritoireduSMIBCSstatuts_7,
-            style: style_TerritoireduSMIBCSstatuts_7_0,
+            dataVar: 'json_TerritoireduSMIBCSstatuts_6',
+            layerName: 'layer_TerritoireduSMIBCSstatuts_6',
+            pane: 'pane_TerritoireduSMIBCSstatuts_6',
+            onEachFeature: pop_TerritoireduSMIBCSstatuts_6,
+            style: style_TerritoireduSMIBCSstatuts_6_0,
         });
-        bounds_group.addLayer(layer_TerritoireduSMIBCSstatuts_7);
-        map.addLayer(layer_TerritoireduSMIBCSstatuts_7);
+        bounds_group.addLayer(layer_TerritoireduSMIBCSstatuts_6);
+        map.addLayer(layer_TerritoireduSMIBCSstatuts_6);
         setBounds();
         var i = 0;
         layer_COLLECTIVITE_TERRITORIALE_1.eachLayer(function(layer) {
@@ -677,218 +553,27 @@
               i++;
         });
         var i = 0;
-        layer_CoursdeauSMIBCS_5.eachLayer(function(layer) {
+        layer_CoursdeauSMIBCS_4.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['TOPONYME'] !== null?String('<div style="color: #0091ca; font-size: 8pt; font-family: \'Cambria\', sans-serif;">' + layer.feature.properties['TOPONYME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CoursdeauSMIBCS_5'});
+            layer.bindTooltip((layer.feature.properties['TOPONYME'] !== null?String('<div style="color: #0091ca; font-size: 8pt; font-family: \'Cambria\', sans-serif;">' + layer.feature.properties['TOPONYME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CoursdeauSMIBCS_4'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        var mapDiv = document.getElementById('map');
-        var row = document.createElement('div');
-        row.className="row";
-        row.id="all";
-        row.style.height = "100%";
-        var col1 = document.createElement('div');
-        col1.className="col9";
-        col1.id = "mapWindow";
-        col1.style.height = "99%";
-        col1.style.width = "80%";
-        col1.style.display = "inline-block";
-        var col2 = document.createElement('div');
-        col2.className="col3";
-        col2.id = "menu";
-        col2.style.display = "inline-block";
-        mapDiv.parentNode.insertBefore(row, mapDiv);
-        document.getElementById("all").appendChild(col1);
-        document.getElementById("all").appendChild(col2);
-        col1.appendChild(mapDiv)
-        var Filters = {"PREC_Z_MOY": "str"};
-        function filterFunc() {
-          map.eachLayer(function(lyr){
-          if ("options" in lyr && "dataVar" in lyr["options"]){
-            features = this[lyr["options"]["dataVar"]].features.slice(0);
-            try{
-              for (key in Filters){
-                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
-                if (Filters[key] == "str" || Filters[key] == "bool"){
-                  var selection = [];
-                  var options = document.getElementById("sel_" + keyS).options
-                  for (var i=0; i < options.length; i++) {
-                    if (options[i].selected) selection.push(options[i].value);
-                  }
-                    try{
-                      if (key in features[0].properties){
-                        for (i = features.length - 1;
-                          i >= 0; --i){
-                          if (selection.indexOf(
-                          features[i].properties[key])<0
-                          && selection.length>0) {
-                          features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                  }
-                }
-                if (Filters[key] == "int"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (parseInt(features[i].properties[key])
-                          < sliderVals[0]
-                          || parseInt(features[i].properties[key])
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "real"){
-                  sliderVals =  document.getElementById(
-                    "div_" + keyS).noUiSlider.get();
-                  try{
-                    if (key in features[0].properties){
-                    for (i = features.length - 1; i >= 0; --i){
-                      if (features[i].properties[key]
-                          < sliderVals[0]
-                          || features[i].properties[key]
-                          > sliderVals[1]){
-                            features.splice(i,1);
-                          }
-                        }
-                      }
-                    } catch(err){
-                    }
-                  }
-                if (Filters[key] == "date"
-                  || Filters[key] == "datetime"
-                  || Filters[key] == "time"){
-                  try{
-                    if (key in features[0].properties){
-                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
-                      startdate = document.getElementById("dat_" +
-                        HTMLkey + "_date1").value.replace(" ", "T");
-                      enddate = document.getElementById("dat_" +
-                        HTMLkey + "_date2").value.replace(" ", "T");
-                      for (i = features.length - 1; i >= 0; --i){
-                        if (features[i].properties[key] < startdate
-                          || features[i].properties[key] > enddate){
-                          features.splice(i,1);
-                        }
-                      }
-                    }
-                  } catch(err){
-                  }
-                }
-              }
-            } catch(err){
-            }
-          this[lyr["options"]["layerName"]].clearLayers();
-          this[lyr["options"]["layerName"]].addData(features);
-        var i = 0;
-        layer_COLLECTIVITE_TERRITORIALE_1.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['NOM'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['NOM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_COLLECTIVITE_TERRITORIALE_1'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-        var i = 0;
-        layer_CommuneduSMIBCS_2.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['NOM'] !== null?String('<div style="color: #323232; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['NOM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CommuneduSMIBCS_2'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-        var i = 0;
-        layer_EPCI_3.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['NOM'] !== null?String('<div style="color: #ff0004; font-size: 10pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['NOM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_EPCI_3'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-        var i = 0;
-        layer_CoursdeauSMIBCS_5.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['TOPONYME'] !== null?String('<div style="color: #0091ca; font-size: 8pt; font-family: \'Cambria\', sans-serif;">' + layer.feature.properties['TOPONYME']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_CoursdeauSMIBCS_5'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
-          }
-          })
-        }
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
-            var div_PREC_Z_MOY = document.createElement('div');
-            div_PREC_Z_MOY.id = "div_PREC_Z_MOY";
-            div_PREC_Z_MOY.className= "filterselect";
-            document.getElementById("menu").appendChild(div_PREC_Z_MOY);
-            sel_PREC_Z_MOY = document.createElement('select');
-            sel_PREC_Z_MOY.multiple = true;
-            sel_PREC_Z_MOY.size = 1;
-            sel_PREC_Z_MOY.id = "sel_PREC_Z_MOY";
-            var PREC_Z_MOY_options_str = "<option value='' unselected></option>";
-            sel_PREC_Z_MOY.onchange = function(){filterFunc()};
-            PREC_Z_MOY_options_str  += '<option value="NULL">NULL</option>';
-            sel_PREC_Z_MOY.innerHTML = PREC_Z_MOY_options_str;
-            div_PREC_Z_MOY.appendChild(sel_PREC_Z_MOY);
-            var lab_PREC_Z_MOY = document.createElement('div');
-            lab_PREC_Z_MOY.innerHTML = 'PREC_Z_MOY';
-            lab_PREC_Z_MOY.className = 'filterlabel';
-            div_PREC_Z_MOY.appendChild(lab_PREC_Z_MOY);
-            var reset_PREC_Z_MOY = document.createElement('div');
-            reset_PREC_Z_MOY.innerHTML = 'clear filter';
-            reset_PREC_Z_MOY.className = 'filterlabel';
-            reset_PREC_Z_MOY.onclick = function() {
-                var options = document.getElementById("sel_PREC_Z_MOY").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_PREC_Z_MOY.appendChild(reset_PREC_Z_MOY);
-        resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_5]);
+        resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_4]);
         map.on("zoomend", function(){
-            resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_5]);
+            resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_4]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_5]);
+            resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_4]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_5]);
+            resetLabels([layer_COLLECTIVITE_TERRITORIALE_1,layer_CommuneduSMIBCS_2,layer_EPCI_3,layer_CoursdeauSMIBCS_4]);
         });
         </script>
     </body>
